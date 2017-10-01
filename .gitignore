@@ -1,0 +1,11 @@
+
+__pycache__/
+*.py[cod]
+*$py.class
+coinmarketcap_cache.sqlite
+.idea
+
+notes.txt
+config.cfg
+main2.py
+
