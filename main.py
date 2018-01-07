@@ -20,17 +20,19 @@ def get_ticker_info(coinmarketcap, tickers_list, sell_price, buy_price):
 def compare_info(price_usd, selling, buying, id):
     """Compares the coin's current price and target price """
 
-    # This is the target price for bitcoins to be bought and sold
+    # This is the target price for cryptocurrencies to be bought and sold
     if float(selling) <= float(price_usd):
-        print('This bitcoin is at the target price to sell')
-        notification(id, price_usd)
+        alert = f'This cryptocurrency is above the price indicated to sell: ${selling}'
+        print(alert)
+        notification(id, price_usd, alert)
     elif float(buying) >= float(price_usd):
-        print('This bitcoin is at the target price to buy')
-        notification(id, price_usd)
+        alert = f'This cryptocurrency is below the price indicated to buy ${buying}'
+        print(alert)
+        notification(id, price_usd, alert)
     else:
         print('not at target price yet')
 
-def notification(id, price):
+def notification(id, price, alert):
     """Send email notification that target price has been reached"""
 
     # load config
@@ -45,7 +47,7 @@ def notification(id, price):
     message['To'] = to_address
     message['Subject'] = str(id).upper()
 
-    body = 'ID: %s\n' %id + 'Price (USD): %s' %price
+    body = f'ID: {id}\nPrice (USD): ${price}\n{alert}'
     message.attach(MIMEText(body, 'plain'))
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
@@ -71,9 +73,9 @@ def main():
     config = get_config()
 
     # List of bitcoins to watch
-    tickers_list = config.get("watch", "tickers_list").split(",")
-    sell_price = config.get("watch", "sell_price").split(",")
-    buy_price = config.get("watch", "buy_price").split(",")
+    tickers_list = config.get("watch", "tickers_list").replace(", ", ",").replace(" ", "-").split(",")
+    sell_price = config.get("watch", "sell_price").replace(", ", ",").split(",")
+    buy_price = config.get("watch", "buy_price").replace(", ", ",").split(",")
 
     # Get market info using coinmarketcap API
     coinmarketcap = Market()
