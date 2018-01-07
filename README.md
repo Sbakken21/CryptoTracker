@@ -1,14 +1,14 @@
-#CryptoTracker
+# CryptoTracker
 This is a python script that utilizes the coinmarketcap API in order to monitor the prices of numerous cryptocurrencies at once. If the user selected values are reached the script will send an email notification to alert the user that it is either time to buy or sell the selected currencies.
-##Getting started
-###Prerequisites
+## Getting started
+### Prerequisites
 This script uses python 3.6.
 
 Use the included requirements.txt:
 ```
 pip install -r requirements.txt
 ```
-###User Setup
+### User Setup
  In `config.example.cfg` change the values to indicate the coins you wish to monitor, and set the prices at which you would like the coins to reach in order to sell and buy them. 
  
  *Note: do NOT use commas when inputting the values.* 
@@ -19,7 +19,7 @@ pip install -r requirements.txt
   
 Once all the values are entered, save `config.example.cfg` as `config.cfg`.
   
- ####Quick Example of config.cfg
+ #### Quick Example of config.cfg
  ```
 [watch]
 
