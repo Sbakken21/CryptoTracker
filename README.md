@@ -11,7 +11,8 @@ pip install -r requirements.txt
 ### User Setup
  In `config.example.cfg` change the values to indicate the coins you wish to monitor, and set the prices at which you would like the coins to reach in order to sell and buy them. 
  
- *Note: do NOT use commas when inputting the values.* 
+ *Note: do NOT use commas for inputting numerical values, only to separate items.  
+ ex: sell_price = 1000 NOT sell_price = 1,000* 
  
  * set `from_address` to the email you are using to send this script from
  * set `password` to the password for the email used for `from_address`
